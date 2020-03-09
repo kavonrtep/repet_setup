@@ -1,0 +1,26 @@
+* Configuration and running Repet 
+This repository include helper scripts to setup and run the de-novo annotation of repetitive sequences using REPET program (https://urgi.versailles.inra.fr/Tools/REPET). Containerized docker image of REPET program is used.
+
+** Configuration
+- Configure path to genome fasta file in =prepare_files.sh=  by setting INPUT_FASTA variable.
+- Customize confuguration of repeat annotation of =TEdenovo.cfg= and =TEannot.cfg=. 
+- run script =./prepare_repet_docker.sh=. This will pull and run docker image with repet programs
+- run script =./prepare_files.sh=  - this will copy configuration and genome file to docker shared directory
+
+NB. all configs, data and running docker container can be removed with =./clean_all.sh= script
+
+** Running repet
+- run =./run_TEdenovo.sh=. Results will be stored in =shared/TEdenovo= directory. Progress of pipeline can be accessed from files =err.txt= and =log.txt=
+- after finish =status= file will be created.
+- after succesful run of TEdenovo run script =./run_TEannot.sh=. Results will be stored in =shared/TEdenovo= directory. Progress of pipeline can be accessed from files =err.txt= and =log.txt= in the same directory.
+
+** Getting output
+use scp (filezilla) to access =data= directory in docker image:
+
+#+begin_src bash
+scp -r -P 2222 centos@localhost:~/data output_directory   # password is centos
+#+end_src
+
+** docker image used:
+https://hub.docker.com/r/urgi/docker_vre_aio
+
