@@ -10,6 +10,7 @@ This repository include helper scripts to setup and run the de-novo annotation o
 NB. all configs, data and running docker container can be removed with =./clean_all.sh= script
 
 ** Running repet
+Run scripts from repet_setup directory!
 - run =./run_TEdenovo.sh=. Results will be stored in =shared/TEdenovo= directory. Progress of pipeline can be accessed from files =err.txt= and =log.txt=
 - after finish =status= file will be created.
 - after succesful run of TEdenovo run script =./run_TEannot.sh=. Results will be stored in =shared/TEdenovo= directory. Progress of pipeline can be accessed from files =err.txt= and =log.txt= in the same directory.
@@ -21,6 +22,7 @@ use scp (filezilla) to access =data= directory in docker image:
 scp -r -P 2222 centos@localhost:~/data output_directory   # password is centos
 #+end_src
 
+Note  - if you copy data directly from =shared= directory, symlinks will be broken!
 ** docker image used:
 https://hub.docker.com/r/urgi/docker_vre_aio
 
